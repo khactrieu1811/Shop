@@ -110,7 +110,7 @@ namespace TeduShop.Data.Infrastructure
 
             return dataContext.Set<T>().Where<T>(predicate).AsQueryable<T>();
         }
-
+        //phần phân trang
         public virtual IQueryable<T> GetMultiPaging(Expression<Func<T, bool>> predicate, out int total, int index = 0, int size = 20, string[] includes = null)
         {
             int skipCount = index * size;

@@ -14,7 +14,7 @@ namespace Shop.Model.Models
     public class Product : Auditable
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]   
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { set; get; }
 
         [Required]
@@ -31,7 +31,9 @@ namespace Shop.Model.Models
         [MaxLength(256)]
         public string Image { set; get; }
 
-        public XElement MoreImages { set; get; }
+        [Column(TypeName = "xml")]
+        public string MoreImages { set; get; }
+
         public decimal Price { set; get; }
 
         public decimal? PromotionPrice { set; get; }
