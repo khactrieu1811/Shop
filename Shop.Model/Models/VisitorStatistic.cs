@@ -11,7 +11,7 @@ namespace Shop.Model.Models
     [Table("VisitorStatistics")]
     public class VisitorStatistic
     {
-        [Key]       
+        [Key]
         public Guid ID { set; get; }
 
         [Required]
