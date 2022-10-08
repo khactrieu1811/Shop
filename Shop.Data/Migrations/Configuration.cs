@@ -1,4 +1,4 @@
-﻿    namespace Shop.Data.Migrations
+﻿        namespace Shop.Data.Migrations
 {
     using System;
     using System.Data.Entity;
@@ -11,7 +11,7 @@
         {
             AutomaticMigrationsEnabled = false;
         }
-
+            
         protected override void Seed(Shop.Data.TeduShopDbContext context)
         {
             //  This method will be called after migrating to the latest version.
