@@ -1,4 +1,5 @@
-﻿using Shop.Model.Models;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using Shop.Model.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,7 +9,8 @@ using System.Threading.Tasks;
 
 namespace Shop.Data
 {
-    public class TeduShopDbContext : DbContext
+    // bài 15 sửa kế thửa Dbcontext thành IdentityDbContext<ApplicationUser>
+    public class TeduShopDbContext : IdentityDbContext<ApplicationUser>
     {
         public TeduShopDbContext() : base("TeduShopConnection") 
         {
@@ -37,9 +39,15 @@ namespace Shop.Data
         public DbSet<VisitorStatistic> VisitorStatistics { set; get; }
 
         public DbSet<Error> Errors { set; get; }
+        public static TeduShopDbContext Create()
+        {
+            return new TeduShopDbContext();
+        }
         protected override void OnModelCreating(DbModelBuilder builder)
         {
-
+            // cấu hình migaration lỗi (15) 
+            builder.Entity<IdentityUserRole>().HasKey(i => new { i.UserId, i.RoleId });
+            builder.Entity<IdentityUserLogin>().HasKey(i => i.UserId);
         }
     }
 }
