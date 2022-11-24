@@ -5,19 +5,20 @@ var myApp = angular.module('myModule', []);
 // khởi tạo controller
 // kết nổi controller vs module
 myApp.controller("schoolController", schoolController);
-myApp.service("Validator", Validator);
+myApp.service("validatorService", validatorService);
+myApp.directive("shopDirective", shopDirective);
 
-schoolController.$inject = ['$scope', 'Validator']
+schoolController.$inject = ['$scope', 'validatorService']
 
-function schoolController($scope, Validator) {
+function schoolController($scope, validatorService) {
 
     $scope.checkNumber = function() {
-        $scope.message = Validator.checkNumber(2);
+        $scope.message = validatorService.checkNumber(2);
     }
     $scope.num = 1;
 }
 
-function Validator($window) {
+function validatorService($window) {
     return {
         checkNumber: checkNumber
     }
@@ -26,5 +27,10 @@ function Validator($window) {
             return 'this is even';
         } else
             return 'this is odd';
+    }
+}
+function shopDirective() {
+    return {
+        templateUrl : "/Scripts/spa/shopDirective.html"
     }
 }
