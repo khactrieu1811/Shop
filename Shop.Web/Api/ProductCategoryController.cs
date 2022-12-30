@@ -24,13 +24,24 @@ namespace Shop.Web.Api
             this._productCategoryService = productCategoryService;
         }
         [Route("getall")]
-        public HttpResponseMessage GetAll(HttpRequestMessage request)
+        //phân trang B2: Ap dụng vào phân trang cho webapi sử dụng linQ fwork
+        public HttpResponseMessage GetAll(HttpRequestMessage request, int page,int pageSize=20)
         {
             return CreateHttpResponse(request, () =>
             {
+                int totalRow = 0;
                 var model = _productCategoryService.GetAll();
-                var reponseData = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(model);
-                var reponse = request.CreateResponse(HttpStatusCode.OK, reponseData);
+                totalRow = model.Count();
+                var query = model.OrderByDescending(x=>x.CreatedDate).Skip(page * pageSize).Take(pageSize);
+                var reponseData = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(query);
+                var paginationSet = new PaginationSet<ProductCategoryViewModel>()
+                {
+                    Items = reponseData,
+                    Page = page,
+                    TotalCount = totalRow,
+                    TotalPages = (int)Math.Ceiling((decimal)totalRow/pageSize)
+                };
+                var reponse = request.CreateResponse(HttpStatusCode.OK, paginationSet);
                 return reponse;
             });
         }
