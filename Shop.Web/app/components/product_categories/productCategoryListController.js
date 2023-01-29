@@ -15,7 +15,7 @@
             var config = {
                 params: {
                     page: page,
-                    pageSize: 20
+                    pageSize: 2
                 }
             }
             // 2 hàm 1 failed và success
