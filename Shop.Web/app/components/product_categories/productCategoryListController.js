@@ -8,14 +8,21 @@
         $scope.page = 0;
         $scope.pagesCount = 0;
         $scope.getProductCagories = getProductCagories;
+        $scope.keyword = '';
 
+        //baiding su7j kiện keyword
+        $scope.search = search;
+        function search() {
+            getProductCagories();
+        }
         // khai báo phương thức để láy dử liệu từ sever
-        function getProductCagories(page) {
+        function getProductCagories( page) {
             page = page || 0;
             var config = {
                 params: {
+                    keyword: $scope.keyword,
                     page: page,
-                    pageSize: 2
+                    pageSize: 20
                 }
             }
             // 2 hàm 1 failed và success
