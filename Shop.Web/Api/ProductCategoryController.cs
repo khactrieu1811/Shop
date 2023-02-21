@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using Shop.Web.Infrastructure.Extensions;
+using System.Web.Script.Serialization;
 
 namespace Shop.Web.Api
 {
@@ -76,6 +77,7 @@ namespace Shop.Web.Api
         }
         [Route("create")]
         [HttpPost]
+        [AllowAnonymous]
         public HttpResponseMessage Create(HttpRequestMessage request, ProductCategoryViewModel producategoryVm)
         {
             return CreateHttpResponse(request, () =>
@@ -101,6 +103,7 @@ namespace Shop.Web.Api
         }
         [Route("update")]
         [HttpPut]
+        [AllowAnonymous]
         public HttpResponseMessage Update(HttpRequestMessage request, ProductCategoryViewModel producategoryVm)
         {
             return CreateHttpResponse(request, () =>
@@ -122,6 +125,53 @@ namespace Shop.Web.Api
                 }
                 return response;
 
+            });
+        }
+        [Route("delete")]
+        [HttpDelete]
+        [AllowAnonymous]
+        public HttpResponseMessage Delete(HttpRequestMessage request, int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var oldProductCategory = _productCategoryService.Delete(id);
+                    _productCategoryService.Save();
+                    var responseData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(oldProductCategory);
+                    response = request.CreateResponse(HttpStatusCode.Created, responseData);
+                }
+                return response;
+            });
+        }
+        [Route("deletemutil")]
+        [HttpDelete]
+        [AllowAnonymous]
+        public HttpResponseMessage DeleteMutil (HttpRequestMessage request, string checkedProductcategories)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var listProductCategory = new JavaScriptSerializer().Deserialize<List<int>>(checkedProductcategories);
+                    foreach(var item in listProductCategory)
+                    {
+                        _productCategoryService.Delete(item);
+                    }
+                    _productCategoryService.Save();
+                    response = request.CreateResponse(HttpStatusCode.OK, listProductCategory.Count);
+                }
+                return response;
             });
         }
     }
