@@ -46,6 +46,7 @@ namespace Shop.Web.Models
         public string MetaKeyword { set; get; }
 
         public string MetaDescription { set; get; }
+        public string Tags { set; get; }
 
         public bool Status { set; get; }
 
