@@ -80,6 +80,10 @@
     <Compile Include="Migrations\202211041520041_Changkey.designer.cs">
       <DependentUpon>202211041520041_Changkey.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202303130341105_AddContentToSlide.cs" />
+    <Compile Include="Migrations\202303130341105_AddContentToSlide.designer.cs">
+      <DependentUpon>202303130341105_AddContentToSlide.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
@@ -128,6 +132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202211041520041_Changkey.resx">
       <DependentUpon>202211041520041_Changkey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303130341105_AddContentToSlide.resx">
+      <DependentUpon>202303130341105_AddContentToSlide.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
