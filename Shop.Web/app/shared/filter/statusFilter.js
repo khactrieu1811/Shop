@@ -2,9 +2,9 @@
     app.filter('statusFilter', function () {
         return function (input) {
             if (input == true)
-                return 'kích họat';
+                return 'Kích hoạt';
             else
-                return 'khóa';
+                return 'Khóa';
         }
     });
 })(angular.module('tedushop.common'));

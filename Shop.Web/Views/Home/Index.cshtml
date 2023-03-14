@@ -11,6 +11,7 @@
     </script>
 }
 <div class="shoes-grid">
+
     <div class="wrap-in">
         <div class="wmuSlider example1 slide-grid">
             <div class="wmuSliderWrapper">
@@ -24,53 +25,54 @@
                             <div class="col-md-7 banner-off">
                                 @Html.Raw(slide.Content)
                             </div>
+
                             <div class="clearfix"> </div>
                         </div>
+
                     </article>
+
                 }
 
             </div>
 
             <ul class="wmuSliderPagination">
-                <li><a href="#" class="">0</a></li>
-                <li><a href="#" class="">1</a></li>
-                <li><a href="#" class="">2</a></li>
+                @for (int i = 0; i < Model.Slides.Count(); i++)
+                {
+                    <li><a href="#" class="">i</a></li>
+                }
+
             </ul>
 
         </div>
 
         @section homeProducts{
+            <!---->
             @*<div class="shoes-grid-left">
-                <a href="single.html">
+                  <a href="single.html">
                     <div class="col-md-6 con-sed-grid">
-
-                        <div class="elit-grid">
-
-                            <h4>consectetur  elit</h4>
-                            <label>FOR ALL PURCHASE VALUE</label>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, </p>
-                            <span class="on-get">GET NOW</span>
-                        </div>
-                        <img class="img-responsive shoe-left" src="~/Assets/client/images/sh.jpg" alt=" " />
-
-                        <div class="clearfix"> </div>
-
+                      <div class="elit-grid">
+                        <h4>consectetur  elit</h4>
+                        <label>FOR ALL PURCHASE VALUE</label>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, </p>
+                        <span class="on-get">GET NOW</span>
+                      </div>
+                      <img class="img-responsive shoe-left" src="/Assets/client/images/sh.jpg" alt=" " />
+                      <div class="clearfix"> </div>
                     </div>
-                </a>
-                <a href="single.html">
+                  </a>
+                  <a href="single.html">
                     <div class="col-md-6 con-sed-grid sed-left-top">
-                        <div class=" elit-grid">
-                            <h4>consectetur  elit</h4>
-                            <label>FOR ALL PURCHASE VALUE</label>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, </p>
-                            <span class="on-get">GET NOW</span>
-                        </div>
-                        <img class="img-responsive shoe-left" src="~/Assets/client/images/wa.jpg" alt=" " />
-
-                        <div class="clearfix"> </div>
+                      <div class="elit-grid">
+                        <h4>consectetur  elit</h4>
+                        <label>FOR ALL PURCHASE VALUE</label>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, </p>
+                        <span class="on-get">GET NOW</span>
+                      </div>
+                      <img class="img-responsive shoe-left" src="/Assets/client/images/wa.jpg" alt=" " />
+                      <div class="clearfix"> </div>
                     </div>
-                </a>
-            </div>*@
+                  </a>
+                </div>*@
             <div class="products">
                 <h5 class="latest-product">Sản phẩm mới nhất</h5>
                 <a class="view-all" href="san-pham.html">Xem tất cả<span> </span></a>
@@ -80,10 +82,10 @@
                 {
                     var url = "/" + product.Alias + ".p-" + product.ID + ".html";
                     <div class="col-md-4 chain-grid grid-top-chain">
-                        <a href="@url">@product.Image</a>
+                        <a href="@url"><img class="img-responsive chain" src="@product.Image" /></a>
                         <span class="star"> </span>
                         <div class="grid-chain-bottom">
-                            <h6><a href="single.html">@product.Name</a></h6>
+                            <h6><a href="@url">@product.Name</a></h6>
                             <div class="star-price">
                                 <div class="dolor-grid">
                                     @if (product.PromotionPrice.HasValue)
@@ -122,10 +124,10 @@
                 {
                     var url = "/" + product.Alias + ".p-" + product.ID + ".html";
                     <div class="col-md-4 chain-grid grid-top-chain">
-                        <a href="@url">@product.Image</a>
+                        <a href="@url"><img class="img-responsive chain" src="@product.Image" /></a>
                         <span class="star"> </span>
                         <div class="grid-chain-bottom">
-                            <h6><a href="single.html">@product.Name</a></h6>
+                            <h6><a href="@url">@product.Name</a></h6>
                             <div class="star-price">
                                 <div class="dolor-grid">
                                     @if (product.PromotionPrice.HasValue)
@@ -155,5 +157,4 @@
                 <div class="clearfix"> </div>
             </div>
         }
-
 

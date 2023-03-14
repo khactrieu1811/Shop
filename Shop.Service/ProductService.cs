@@ -92,18 +92,7 @@ namespace Shop.Service
         public Product GetById(int id)
         {
             return _productRepository.GetSingleById(id);
-        }
-
-        public IEnumerable<Product> GetHotProduct(int top)
-        {
-            return _productRepository.GetMulti(x => x.Status).OrderByDescending(x => x.CreatedDate).Take(top);
-        }
-
-        public IEnumerable<Product> GetLastest(int top)
-        {
-            return _productRepository.GetMulti(x => x.Status && x.HotFlag == true).OrderByDescending(x => x.CreatedDate).Take(top);
-        }
-
+        }       
         public void Save()
         {
             _unitOfWork.Commit();
@@ -133,6 +122,16 @@ namespace Shop.Service
                     _productTagRepository.Add(productTag);
                 }
             }
+        }
+        public IEnumerable<Product> GetLastest(int top)
+        {
+            return _productRepository.GetMulti(x => x.Status).OrderByDescending(x => x.CreatedDate).Take(top);
+        }
+
+        public IEnumerable<Product> GetHotProduct(int top)
+        {
+            return _productRepository.GetMulti(x => x.Status && x.HotFlag == true).OrderByDescending(x => x.CreatedDate).Take(top);
+
         }
     }
 }
