@@ -85,7 +85,6 @@ namespace Shop.Web.Api
             });
         }
 
-
         [Route("create")]
         [HttpPost]
         [AllowAnonymous]

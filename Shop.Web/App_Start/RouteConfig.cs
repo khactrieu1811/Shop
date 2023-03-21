@@ -20,6 +20,12 @@ namespace Shop.Web
                 namespaces: new string[] { "Shop.Web.Controllers" }
             );*/
             routes.MapRoute(
+                name: "Search",
+                url: "tim-kiem.html",
+                defaults: new { controller = "product", action = "Search", id = UrlParameter.Optional },
+                namespaces: new string[] { "Shop.Web.Controllers" }
+            ); 
+             routes.MapRoute(
            name: "About",
            url: "gioi-thieu.html",
            defaults: new { controller = "About", action = "Index", id = UrlParameter.Optional },
