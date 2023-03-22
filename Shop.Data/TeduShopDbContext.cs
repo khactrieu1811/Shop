@@ -12,7 +12,7 @@ namespace Shop.Data
     // bài 15 sửa kế thửa Dbcontext thành IdentityDbContext<ApplicationUser>
     public class TeduShopDbContext : IdentityDbContext<ApplicationUser>
     {
-        public TeduShopDbContext() : base("TeduShopConnection") 
+        public TeduShopDbContext() : base("TeduShopConnection") // khi load bảng cha thì k tự động inclu thêm bảng con
         {
             this.Configuration.LazyLoadingEnabled = false;
         }   

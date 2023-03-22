@@ -83,13 +83,14 @@
             </div>
             <h6>@Model.Quantity </h6>
             <p>@Model.Description</p>
-            <div class="share">
-                <h5>Share Product :</h5>
-                <ul class="share_nav">
-                    <li><a href="#"><img src="~/Assets/client/images/facebook.png" title="facebook"></a></li>
-                    <li><a href="#"><img src="~/Assets/client/images/twitter.png" title="Twiiter"></a></li>
-                    <li><a href="#"><img src="~/Assets/client/images/rss.png" title="Rss"></a></li>
-                    <li><a href="#"><img src="~/Assets/client/images/gpluse.png" title="Google+"></a></li>
+            <div class="tag">
+                <h5>Tag :</h5>
+                <ul class="taglist">
+                    @foreach (var tag in (IEnumerable<Shop.Web.Models.TagViewModel>)ViewBag.Tags)
+                    {
+                        <li><a href="/tag/@(tag.ID).html">@(tag.Name), </a></li>
+                    }
+
                 </ul>
             </div>
 

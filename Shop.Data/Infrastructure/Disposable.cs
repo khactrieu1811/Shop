@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shop.Data.Infrastructure
 {
-    public class Disposable : IDisposable
+    public class Disposable : IDisposable // cho phép kế thừa tứ nó sẽ tự động hủy 
     {
         private bool isDisposed;
 

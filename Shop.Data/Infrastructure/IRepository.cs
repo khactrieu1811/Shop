@@ -20,16 +20,16 @@ namespace Shop.Data.Infrastructure
 
         T Delete(int id);
 
-        //Delete multi records
-        void DeleteMulti(Expression<Func<T, bool>> where);  
+        //Xóa Nhiều bản ghi
+        void DeleteMulti(Expression<Func<T, bool>> where);
 
-        // Get an entity by int id
+        // lấy một thực thể bằng int id
         T GetSingleById(int id);
-
+        //Lấy theo điều kiện
         T GetSingleByCondition(Expression<Func<T, bool>> expression, string[] includes = null);
-
+        //Lấy tất cả
         IEnumerable<T> GetAll(string[] includes = null);
-
+        //lấy nhiều
         IEnumerable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] includes = null);
 
         IEnumerable<T> GetMultiPaging(Expression<Func<T, bool>> filter, out int total, int index = 0, int size = 50, string[] includes = null);
