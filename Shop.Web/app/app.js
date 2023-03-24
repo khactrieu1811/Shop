@@ -17,11 +17,11 @@
                 url: '',
                 templateUrl: '/app/shared/views/baseView.html',
                 abstract: true
-            })//.state('login', {
-            //    url: "/login",
-            //    templateUrl: "/app/components/login/loginView.html",
-            //    controller: "loginController"
-            //})
+            }).state('login', {
+                url: "/login",
+                templateUrl: "/app/components/login/loginView.html",
+                controller: "loginController"
+            })
             .state('home', {
                 url: "/admin",
                 parent: 'base',

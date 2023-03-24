@@ -34,9 +34,9 @@ namespace Shop.Web.App_Start
             {
                 // chưa đăng nhập chuyển qua login oauthen để chứng thực
                 TokenEndpointPath = new PathString("/oauth/token"),
-                Provider = new AuthorizationServerProvider(),
-                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
-                AllowInsecureHttp = true,
+                Provider = new AuthorizationServerProvider(), // 
+                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30), // cho phep expirer tokken  trog vòng 30p
+                AllowInsecureHttp = true, // cho phép validate qua ứng dụng client
 
             });
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());

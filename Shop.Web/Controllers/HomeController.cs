@@ -52,6 +52,7 @@ namespace Shop.Web.Controllers
             return View();
         }
         [ChildActionOnly]
+        [OutputCache(Duration = 3600)]
         public ActionResult Footer()
         {
             var footerModel = _commonService.GetFooter();
@@ -59,6 +60,7 @@ namespace Shop.Web.Controllers
             return PartialView(footerViewModel);
         }
         [ChildActionOnly]
+        [OutputCache(Duration = 3600)]
         public ActionResult Header()
         {
             return PartialView();
