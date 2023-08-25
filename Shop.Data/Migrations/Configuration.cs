@@ -25,6 +25,7 @@
             CreateSlide(context);
             //    // khởi tạo các dữ liệu mẫu khi chạy ứng dụng
             CreatePage(context);
+            CreateContactDetail(context);
         }
         private void CreateUser(TeduShopDbContext context)
         {
@@ -112,6 +113,42 @@
 
                     };
                     context.Pages.Add(page);
+                    context.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var eve in ex.EntityValidationErrors)
+                    {
+                        Trace.WriteLine($"Entity of type \"{eve.Entry.Entity.GetType().Name}\" in state \"{eve.Entry.State}\" has the following validation error.");
+                        foreach (var ve in eve.ValidationErrors)
+                        {
+                            Trace.WriteLine($"- Property: \"{ve.PropertyName}\", Error: \"{ve.ErrorMessage}\"");
+                        }
+                    }
+                }
+
+            }
+        }
+        private void CreateContactDetail(TeduShopDbContext context)
+        {
+            if (context.ContactDetails.Count() == 0)
+            {
+                try
+                {
+                    var contactDetail = new Shop.Model.Models.ContactDetail()
+                    {
+                        Name = "Shop thời trang TEDU",
+                        Address = "Ngõ 77 Bình Định",
+                        Email = "tedu@gmail.com",
+                        Lat = 21.0633645,
+                        Lng = 105.8053274,
+                        Phone = "095423233",
+                        Website = "http://tedu.com.vn",
+                        Other = "",
+                        Status = true
+
+                    };
+                    context.ContactDetails.Add(contactDetail);
                     context.SaveChanges();
                 }
                 catch (DbEntityValidationException ex)
